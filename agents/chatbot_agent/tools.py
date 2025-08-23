@@ -17,7 +17,7 @@ def generate_tools(db, User, Subscription, Service):
     )
     llm = Gemini(model="models/gemini-2.5-flash")
     
-    client = chromadb.PersistentClient(path="./agents/chroma_db")
+    client = chromadb.PersistentClient(path="./agents/db/chroma_db")
     collection = client.get_or_create_collection("collection")
     vectorStorage = ChromaVectorStore(chroma_collection=collection)
     index = VectorStoreIndex.from_vector_store(vectorStorage, embed_model=embedd_model)
@@ -47,7 +47,7 @@ def generate_tools(db, User, Subscription, Service):
         """This tool list the user subscribtions and user remaining money"""
         user_id = config.get("configurable",{}).get("user_id")
         user = User.query.filter_by(user_id = user_id).first()
-        outputString = "User Subscriptions: \n"
+        outputString = f"User Money: {user.money}\n\n User Subscriptions: \n"
         for i,subscription in enumerate(user.subscriptions):
             service = Service.query.filter_by(service_id = subscription.service_id).first()
             outputString+=str(i)+" Name: "+service.service_name+", Price: "+service.service_price+", Category: "+service.category+", Plan Type: "+subscription.plan_type
