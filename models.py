@@ -10,7 +10,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
     email = db.Column(db.String(30), nullable=False, unique=True)
-    money = db.Column(db.Numeric(10,2),default = 500)
+    money = db.Column(db.Numeric(10,2), default = 100)
     password = db.Column(db.String(225), nullable=False)  
     token_hash = db.Column(db.String(225), nullable=True)  
     token_expiry = db.Column(db.DateTime, nullable=True)

@@ -162,7 +162,6 @@ def register_routes(app, db):
         user_id = User.query.filter_by(token_hash=hashed_received).first().user_id
         configuraion = {"configurable":{"thread_id":token,"user_id":user_id}}  
         response = agent.invoke({"messages":message},config= configuraion)
-        print(response)
         return jsonify({"message":response["messages"][-1].content}),200
     
 

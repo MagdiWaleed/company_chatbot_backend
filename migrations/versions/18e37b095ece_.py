@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 6c7c84e03e05
+Revision ID: 18e37b095ece
 Revises: 
-Create Date: 2025-08-23 10:51:35.577875
+Create Date: 2025-08-23 21:10:36.193657
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6c7c84e03e05'
+revision = '18e37b095ece'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,13 +21,16 @@ def upgrade():
     op.create_table('services',
     sa.Column('service_id', sa.Integer(), nullable=False),
     sa.Column('service_name', sa.String(length=100), nullable=False),
+    sa.Column('service_price', sa.Numeric(precision=10, scale=2), nullable=False),
     sa.Column('category', sa.String(length=50), nullable=False),
-    sa.PrimaryKeyConstraint('service_id')
+    sa.PrimaryKeyConstraint('service_id'),
+    sa.UniqueConstraint('service_name')
     )
     op.create_table('users',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.Text(), nullable=False),
     sa.Column('email', sa.String(length=30), nullable=False),
+    sa.Column('money', sa.Numeric(precision=10, scale=2), nullable=True),
     sa.Column('password', sa.String(length=225), nullable=False),
     sa.Column('token_hash', sa.String(length=225), nullable=True),
     sa.Column('token_expiry', sa.DateTime(), nullable=True),
@@ -39,8 +42,6 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('service_id', sa.Integer(), nullable=False),
     sa.Column('plan_type', sa.String(length=50), nullable=False),
-    sa.Column('start_date', sa.Date(), nullable=False),
-    sa.Column('status', sa.String(length=20), nullable=False),
     sa.ForeignKeyConstraint(['service_id'], ['services.service_id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.user_id'], ),
     sa.PrimaryKeyConstraint('subscription_id')
