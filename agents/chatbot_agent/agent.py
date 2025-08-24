@@ -1,9 +1,7 @@
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from langgraph.graph import StateGraph, START,END
-from langgraph.graph.message import add_messages
-from langgraph.prebuilt import ToolNode, tools_condition,create_react_agent
+from langchain_core.messages import  SystemMessage
+from langgraph.graph import StateGraph, START
+from langgraph.prebuilt import ToolNode, tools_condition
 from langchain_google_genai import ChatGoogleGenerativeAI 
-from typing import TypedDict, Annotated
 from langgraph.checkpoint.memory import MemorySaver
 from .schema import AgentState
 from .tools import generate_tools
@@ -22,7 +20,7 @@ def getChatbotAgent(db, User, Subscription, Service):
 
     def agent(state:AgentState)->AgentState:
         """Main Agent"""
-        system_message = """
+        system_message = f"""
         You are a helpful Customer Service Agent called "AG", working in company called "Amazon",
         You must answer the user's Questions and inquiries based on the information you have, if you don't know the answer, say "I don't know".
         Your company offers services that the users can subscribe to, so you can also subscribe to the user to one or many of them.
@@ -37,6 +35,8 @@ def getChatbotAgent(db, User, Subscription, Service):
             - Don't subscribe to any service until show it to the user and asking him to confirm it.
             - Follow Think, Act, Observe pattern using the tool you have and stack as many as you want of tools to reach your goal.
             - Break big questions and prolems to small ones.
+        
+        user name is: {state['username']}
         """
         final_sys_message ="""Follow the above instructions."""
         agent_llm = llm.bind_tools(tools)

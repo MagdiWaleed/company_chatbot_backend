@@ -1,11 +1,10 @@
-from llama_index.core import (StorageContext,VectorStoreIndex,SimpleDirectoryReader)
-from llama_index.core.node_parser import SentenceSplitter
+from llama_index.core import (VectorStoreIndex)
 from llama_index.llms.gemini import Gemini
 from llama_index.embeddings.gemini import GeminiEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from langchain_core.runnables import RunnableConfig
 import chromadb
-from typing import Annotated, List
+from typing import  List
 
 from dotenv import load_dotenv
 print(load_dotenv())
@@ -40,17 +39,17 @@ def generate_tools(db, User, Subscription, Service):
         servicesObjects = Service.query.all()
         services =[]
         for i,service in enumerate(servicesObjects):
-            services.append(f"{i})  Service Name: {service.service_name}, Service Price: {service.service_price}")
+            services.append(f"{i})  Service Name: {service.service_name}, Service Price: {str(float(service.service_price))}")
         return "\n".join(services)
     
     def get_user_all_subcribtions(config: RunnableConfig = None):
         """This tool list the user subscribtions and user remaining money"""
         user_id = config.get("configurable",{}).get("user_id")
         user = User.query.filter_by(user_id = user_id).first()
-        outputString = f"User Money: {user.money}\n\n User Subscriptions: \n"
+        outputString = f"User Money: {str(float(user.money))}\n\n User Subscriptions: \n"
         for i,subscription in enumerate(user.subscriptions):
             service = Service.query.filter_by(service_id = subscription.service_id).first()
-            outputString+=str(i)+" Name: "+service.service_name+", Price: "+service.service_price+", Category: "+service.category+", Plan Type: "+subscription.plan_type
+            outputString+=str(i)+" Name: "+service.service_name+", Price: "+str(float(service.service_price))+", Category: "+service.category+", Plan Type: "+subscription.plan_type
         return outputString
         
     

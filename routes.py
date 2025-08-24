@@ -137,6 +137,7 @@ def register_routes(app, db):
         name = data.get("name")
         email = data.get("email")
         password = data.get("password")
+        money = data.get("money")
         try:
             user = User.query.filter_by(email=email).first()
             if user is not None:
@@ -144,7 +145,7 @@ def register_routes(app, db):
         except:
             return jsonify({"error": "Email already registered"}), 400
 
-        new_user = User(name=name, email=email)
+        new_user = User(name=name, email=email, money=money)
         new_user.set_password(password)
 
         db.session.add(new_user)
@@ -159,9 +160,9 @@ def register_routes(app, db):
         message = data["message"]
         token = data["token"]
         hashed_received = hashlib.sha256(token.encode()).hexdigest()
-        user_id = User.query.filter_by(token_hash=hashed_received).first().user_id
-        configuraion = {"configurable":{"thread_id":token,"user_id":user_id}}  
-        response = agent.invoke({"messages":message},config= configuraion)
+        user = User.query.filter_by(token_hash=hashed_received).first()
+        configuraion = {"configurable":{"thread_id":token,"user_id":user.user_id}}  
+        response = agent.invoke({"messages":message,"username":user.name},config= configuraion)
         return jsonify({"message":response["messages"][-1].content}),200
     
 
