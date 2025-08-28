@@ -29,7 +29,7 @@ A simple yet powerful **AI Customer Service Agent** that can:
 
 Amazon is just a **sample dataset** (not affiliated).  
 *(Insert GIF/screenshot of your demo here)*  
-[Watch the demo on YouTube](https://youtu.be/R7gtjDmP00I)
+[Watch the demo](https://youtu.be/R7gtjDmP00I)
 
 ---
 
@@ -37,7 +37,7 @@ Amazon is just a **sample dataset** (not affiliated).
 
 Clone the repo:  
 ```bash
-git clone https://github.com/your-username/customer-service-agent.git
+git clone (https://github.com/MagdiWaleed/customer-service-backend.git)
 cd customer-service-agent
 ````
 
