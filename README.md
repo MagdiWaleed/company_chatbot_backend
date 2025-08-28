@@ -54,7 +54,7 @@ python run.py
 
 Run frontend (Streamlit):
 
-[set up](https://github.com/MagdiWaleed/customer-service-frontend)
+[Set Up and Run The Frontend](https://github.com/MagdiWaleed/customer-service-frontend)
 
 ---
 
@@ -73,10 +73,10 @@ Run frontend (Streamlit):
 ```
 .
 ├── app.py                # Flask backend
-├── ui.py                 # Streamlit frontend
-├── services/             # Service catalog & data
-├── rag/                  # RAG setup with LlamaIndex + ChromaDB
-├── agents/               # LangGraph orchestration logic
+├── data_vectorizor.py                 # To embedd the data and added to the db
+├── agents/             # Agent, db, and tools
+├── instance/                  # Backend db
+├── models/               # Database tabels structure
 ├── requirements.txt
 └── README.md
 ```
@@ -94,7 +94,7 @@ Run frontend (Streamlit):
 
 ## 📬 Contact
 
-If you find this project useful, feel free to ⭐ star the repo and connect on [LinkedIn](your-linkedin-url).
+If you find this project useful, feel free to ⭐ star the repo and connect on [LinkedIn](www.linkedin.com/in/magdi-waleed).
 
 ```
 ```
