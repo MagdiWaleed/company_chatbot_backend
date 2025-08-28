@@ -1,4 +1,3 @@
-````markdown
 # Customer Service AI Agent
 
 A simple yet powerful **AI Customer Service Agent** that can:
@@ -30,6 +29,7 @@ A simple yet powerful **AI Customer Service Agent** that can:
 
 Amazon is just a **sample dataset** (not affiliated).  
 *(Insert GIF/screenshot of your demo here)*  
+[Watch the demo on YouTube](https://youtu.be/R7gtjDmP00I)
 
 ---
 
