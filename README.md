@@ -37,8 +37,7 @@ Amazon is just a **sample dataset** (not affiliated).
 
 Clone the repo:  
 ```bash
-git clone (https://github.com/MagdiWaleed/customer-service-backend.git)
-cd customer-service-agent
+git clone https://github.com/MagdiWaleed/customer-service-backend.git
 ````
 
 Install dependencies:
@@ -50,14 +49,12 @@ pip install -r requirements.txt
 Run backend (Flask):
 
 ```bash
-python app.py
+python run.py
 ```
 
 Run frontend (Streamlit):
 
-```bash
-streamlit run ui.py
-```
+[set up](https://github.com/MagdiWaleed/customer-service-frontend)
 
 ---
 
