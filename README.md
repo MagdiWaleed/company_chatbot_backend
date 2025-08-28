@@ -38,6 +38,7 @@ Amazon is just a **sample dataset** (not affiliated).
 Clone the repo:  
 ```bash
 git clone https://github.com/MagdiWaleed/customer-service-backend.git
+cd customer-service-backend
 ````
 
 Install dependencies:
