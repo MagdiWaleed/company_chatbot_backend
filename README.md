@@ -55,6 +55,7 @@ python run.py
 Run frontend (Streamlit):
 
 [Set Up and Run The Frontend](https://github.com/MagdiWaleed/customer-service-frontend)
+* **Note:** Remember to adjust The URL links between the frontend and the backend properly
 
 ---
 
@@ -63,7 +64,6 @@ Run frontend (Streamlit):
 * **AI/ML** → LlamaIndex, LangChain, LangGraph
 * **Database** → ChromaDB
 * **Backend** → Flask
-* **Frontend** → Streamlit
 * **Language** → Python
 
 ---
